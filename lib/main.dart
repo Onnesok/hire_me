@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hire_me/controller/login_controller.dart';
 import 'package:hire_me/service/profile_provider.dart';
+import 'package:hire_me/theme/app_theme.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -16,9 +17,9 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        // theme: AppTheme.lightTheme, // Custom theme pore ditesi @TODO:Custom theme
-        // darkTheme: AppTheme.darkTheme,
-        themeMode: ThemeMode.system, // Can switch between light/dark based on system  .....
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.system, // switch between light/dark based on system .....
         home: AuthCheck(),
       ),
     );
