@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hire_me/controller/login_controller.dart';
+import 'package:hire_me/home.dart';
 import 'package:hire_me/service/profile_provider.dart';
 import 'package:hire_me/theme/app_theme.dart';
 import 'package:provider/provider.dart';
@@ -35,18 +36,6 @@ class AuthCheck extends StatelessWidget {
     return profileProvider.isLoggedIn
         ? Home() // Navigate to home if logged in
         : LoginController(); // Navigate to login screen if not logged in
-  }
-}
-
-
-class Home extends StatelessWidget {
-  const Home({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text("Home"),
-    );
   }
 }
 
