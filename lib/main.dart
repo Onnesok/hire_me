@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hire_me/bottom_appbar.dart';
 import 'package:hire_me/controller/login_controller.dart';
 import 'package:hire_me/home.dart';
 import 'package:hire_me/service/profile_provider.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         darkTheme: AppTheme.darkTheme,
         themeMode: ThemeMode.system, // switch between light/dark based on system .....
         home: isLoggedIn
-            ? Home() // Navigate to home if logged in
+            ? CustomBottomAppBar() // Navigate to home if logged in
             : LoginController(),
       ),
     );
