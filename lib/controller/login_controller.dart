@@ -23,7 +23,7 @@ class _LoginControllerState extends State<LoginController> {
     if (_formKey.currentState!.validate()) {
       final profileProvider = Provider.of<ProfileProvider>(context, listen: false);
       await profileProvider.updateLoginStatus(true);
-      Fluttertoast.showToast(msg: "saved: ${profileProvider.isLoggedIn}");
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home() ) );
       // try {
       //   final tokens = await AuthService.login(
       //     _emailController.text,
