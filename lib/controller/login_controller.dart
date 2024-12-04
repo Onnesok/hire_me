@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hire_me/bottom_appbar.dart';
 import 'package:hire_me/home.dart';
 import 'package:hire_me/view/registration_view.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +24,7 @@ class _LoginControllerState extends State<LoginController> {
     if (_formKey.currentState!.validate()) {
       final profileProvider = Provider.of<ProfileProvider>(context, listen: false);
       await profileProvider.updateLoginStatus(true);
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home() ) );
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CustomBottomAppBar() ) );
       // try {
       //   final tokens = await AuthService.login(
       //     _emailController.text,
