@@ -1,8 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <application
         android:label="hire_me"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <!-- Optional: Define a custom notification icon -->
+        <meta-data
+            android:name="flutter_local_notifications.default_notification_icon"
+            android:resource="@mipmap/ic_launcher" />
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
