@@ -86,10 +86,11 @@ class AppTheme {
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     primarySwatch: Colors.grey,
-    scaffoldBackgroundColor: Colors.black87,
+    scaffoldBackgroundColor: Color(0xFF171717),
+    //scaffoldBackgroundColor: Colors.black87,
 
     appBarTheme: AppBarTheme(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFF171717),
       foregroundColor: Colors.white,
       elevation: 0,
       titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
@@ -115,6 +116,13 @@ class AppTheme {
 
 
     iconTheme: IconThemeData(color: Colors.white),
+
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedItemColor: Colors.blue,
+      unselectedItemColor: Colors.white60,
+      backgroundColor: Colors.grey[900],
+      elevation: 8,
+    ),
 
 
     cardTheme: CardTheme(
