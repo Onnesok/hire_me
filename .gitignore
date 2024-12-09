@@ -38,7 +38,7 @@ app.*.symbols
 app.*.map.json
 
 # Environment file
-hireme.env
+.env
 
 
 # Android Studio will place build artifacts here
