@@ -12,6 +12,8 @@ import 'package:hire_me/service/themeprovider.dart';
 import 'package:hire_me/view/banner_list_view.dart';
 import 'package:provider/provider.dart';
 import 'controller/login_controller.dart';
+// TODO: Tobe completed... Its not done yet and not mvc in the least
+
 
 class Home extends StatefulWidget {
   final ScrollController controller;
