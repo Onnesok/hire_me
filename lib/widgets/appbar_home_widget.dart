@@ -4,9 +4,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hire_me/view/notification_page_view.dart';
-
 import '../map_screen.dart';
-import '../notification_page.dart';
 
 Widget appBar(BuildContext context) {
   final theme = Theme.of(context);

@@ -3,7 +3,6 @@ import 'package:dot_curved_bottom_nav/dot_curved_bottom_nav.dart';
 import 'package:hire_me/cart_page.dart';
 import 'package:hire_me/help_page.dart';
 import 'package:hire_me/home.dart';
-import 'package:hire_me/notification_page.dart';
 import 'package:hire_me/profile_page.dart';
 
 class CustomBottomAppBar extends StatefulWidget {
