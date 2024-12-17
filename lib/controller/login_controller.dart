@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hire_me/bottom_appbar.dart';
+import 'package:hire_me/widgets/bottom_appbar.dart';
 import 'package:hire_me/home.dart';
 import 'package:hire_me/view/registration_view.dart';
 import 'package:provider/provider.dart';
