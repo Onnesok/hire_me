@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hire_me/view/notification_page_view.dart';
 
 import '../map_screen.dart';
 import '../notification_page.dart';
@@ -57,7 +58,7 @@ Widget appBar(BuildContext context) {
               IconButton(
                 onPressed: () {
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => NotificationListPage()));
+                      context, MaterialPageRoute(builder: (context) => NotificationViewPage()));
                 },
                 icon: Icon(Icons.notifications_none_outlined, color: theme.iconTheme.color),
               ),
