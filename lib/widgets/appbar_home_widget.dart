@@ -5,6 +5,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hire_me/view/notification_page_view.dart';
 import '../map_screen.dart';
+import '../model/map_page_model.dart';
+import '../view/map_page_view.dart';
 
 Widget appBar(BuildContext context) {
   final theme = Theme.of(context);
@@ -30,7 +32,10 @@ Widget appBar(BuildContext context) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MapScreen(currentLocation: currentLocation),
+                        builder: (context) {
+                          LocationModel locationModel = LocationModel(currentLocation: currentLocation);
+                          return MapView(locationModel: locationModel);
+                        },
                       ),
                     );
                   } else {
