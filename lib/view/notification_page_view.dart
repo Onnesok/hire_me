@@ -40,7 +40,7 @@ class _NotificationViewPageState extends State<NotificationViewPage> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/ui/b4.png'),
+            image: AssetImage('assets/ui/background.png'),
             fit: BoxFit.cover,
           ),
         ),
