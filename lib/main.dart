@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:hire_me/bottom_appbar.dart';
+import 'package:hire_me/widgets/bottom_appbar.dart';
 import 'package:hire_me/controller/login_controller.dart';
 import 'package:hire_me/service/profile_provider.dart';
 import 'package:hire_me/service/themeprovider.dart';

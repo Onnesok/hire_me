@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dot_curved_bottom_nav/dot_curved_bottom_nav.dart';
 import 'package:hire_me/cart_page.dart';
+import 'package:hire_me/help_page.dart';
 import 'package:hire_me/home.dart';
 import 'package:hire_me/notification_page.dart';
 import 'package:hire_me/profile_page.dart';
@@ -19,7 +20,7 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
   late final List<Widget> _pages = [
     Home(controller: _scrollController),
     CartPage(scrollController: _scrollController),
-    NotificationListPage(),
+    HelpScreen(),
     ProfilePage(scrollController: _scrollController),
   ];
 
@@ -38,7 +39,7 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
         scrollController: _scrollController,
         hideOnScroll: true,
         indicatorColor: Colors.blue,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.black.withOpacity(0.9),
         animationDuration: const Duration(milliseconds: 300),
         animationCurve: Curves.ease,
         selectedIndex: _currentPage,
