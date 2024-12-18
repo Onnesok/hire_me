@@ -1,3 +1,34 @@
+//buildscript {
+//    repositories {
+//        google()  // Repository for Android dependencies
+//        mavenCentral()  // Central repository for other dependencies
+//    }
+//    dependencies {
+//        // Update Android Gradle Plugin version for compatibility with Gradle 8.5
+//        classpath 'com.android.tools.build:gradle:8.1.2'
+//    }
+//}
+//
+//allprojects {
+//    repositories {
+//        google()
+//        mavenCentral()
+//    }
+//}
+//
+//rootProject.buildDir = "../build"
+//subprojects {
+//    project.buildDir = "${rootProject.buildDir}/${project.name}"
+//}
+//subprojects {
+//    project.evaluationDependsOn(":app")
+//}
+//
+//tasks.register("clean", Delete) {
+//    delete rootProject.buildDir
+//}
+//
+
 allprojects {
     repositories {
         google()

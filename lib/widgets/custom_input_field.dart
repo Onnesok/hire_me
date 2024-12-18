@@ -10,7 +10,7 @@ class CustomInputField extends StatelessWidget {
   final String? Function(String?)? validator;
 
   const CustomInputField({
-    Key? key,
+    super.key,
     required this.controller,
     required this.hintText,
     required this.icon,
@@ -18,7 +18,7 @@ class CustomInputField extends StatelessWidget {
     this.isPasswordVisible = false,
     this.onTogglePasswordVisibility,
     this.validator,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class CustomInputField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(
-        style: TextStyle(color: Colors.black),
+        style: const TextStyle(color: Colors.black),
         controller: controller,
         obscureText: isPassword && !isPasswordVisible,
         decoration: InputDecoration(
