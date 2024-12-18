@@ -73,7 +73,9 @@ class _HomeState extends State<Home> {
     filteredItems = itemList; // Initially showing all items
     searchController.addListener(_filterItems);
   }
+  void _filt(){
 
+  }
   void _filterItems() {
     setState(() {
       filteredItems = itemList

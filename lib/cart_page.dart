@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,7 +33,7 @@ class CartItem {
 class CartPage extends StatefulWidget {
   final ScrollController scrollController;
 
-  const CartPage({Key? key, required this.scrollController}) : super(key: key);
+  const CartPage({super.key, required this.scrollController});
 
   @override
   _CartPageState createState() => _CartPageState();
@@ -84,10 +86,10 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Shopping Cart"),
+        title: const Text("Shopping Cart"),
       ),
       body: cartItems.isEmpty
-          ? Center(child: Text("Your cart is empty"))
+          ? const Center(child: Text("Your cart is empty"))
           : CustomScrollView(
         controller: widget.scrollController,
         slivers: [
@@ -115,13 +117,13 @@ class _CartPageState extends State<CartPage> {
             children: [
               Text(
                 "Total: \$${_totalPrice.toStringAsFixed(2)}",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               ElevatedButton(
                 onPressed: () {
                   // Proceed to checkout
                 },
-                child: Text("Checkout"),
+                child: const Text("Checkout"),
               ),
             ],
           ),
@@ -137,7 +139,7 @@ class CartItemWidget extends StatelessWidget {
   final VoidCallback onDecrease;
   final VoidCallback onRemove;
 
-  const CartItemWidget({
+  const CartItemWidget({super.key, 
     required this.cartItem,
     required this.onIncrease,
     required this.onDecrease,
@@ -147,8 +149,8 @@ class CartItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-      leading: Icon(Icons.shopping_cart),
+      contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      leading: const Icon(Icons.shopping_cart),
       title: Text(cartItem.title),
       subtitle: Text(cartItem.description),
       trailing: Column(
@@ -162,12 +164,12 @@ class CartItemWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
-                  icon: Icon(Icons.remove),
+                  icon: const Icon(Icons.remove),
                   onPressed: onDecrease,
                 ),
                 Text(cartItem.quantity.toString()),
                 IconButton(
-                  icon: Icon(Icons.add),
+                  icon: const Icon(Icons.add),
                   onPressed: onIncrease,
                 ),
               ],

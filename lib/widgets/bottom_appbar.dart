@@ -19,7 +19,7 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
   late final List<Widget> _pages = [
     Home(controller: _scrollController),
     CartPage(scrollController: _scrollController),
-    HelpScreen(),
+    HelpScreen(scrollController: _scrollController,),
     ProfilePage(scrollController: _scrollController),
   ];
 

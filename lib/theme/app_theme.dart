@@ -8,7 +8,7 @@ class AppTheme {
     primarySwatch: Colors.blue,
     scaffoldBackgroundColor: Colors.white,
 
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: Colors.white,
       foregroundColor: Colors.black,
       elevation: 4,
@@ -16,7 +16,7 @@ class AppTheme {
           TextStyle(color: Colors.black, fontSize: 20),
     ),
 
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       bodyLarge: TextStyle(color: Colors.black), // Body text color for readability
       bodyMedium: TextStyle(color: Colors.black87), // Slightly lighter body text
       titleLarge: TextStyle(color: Colors.black), // Headline text color
@@ -31,13 +31,13 @@ class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
       ),
     ),
 
-    iconTheme: IconThemeData(color: Colors.black),
+    iconTheme: const IconThemeData(color: Colors.black),
 
-    cardTheme: CardTheme(
+    cardTheme: const CardTheme(
       color: Colors.white,
       elevation: 4,
       margin: EdgeInsets.all(8),
@@ -64,7 +64,7 @@ class AppTheme {
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(25),
-        borderSide: BorderSide(color: Colors.grey),
+        borderSide: const BorderSide(color: Colors.grey),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(25),
@@ -74,7 +74,7 @@ class AppTheme {
         borderRadius: BorderRadius.circular(25),
         borderSide: const BorderSide(color: Colors.red, width: 2),
       ),
-      hintStyle: TextStyle(color: Colors.black),
+      hintStyle: const TextStyle(color: Colors.black),
       errorStyle: const TextStyle(color: Colors.red, fontSize: 12),
       prefixIconColor: Colors.black,
       suffixIconColor: Colors.black,
@@ -86,10 +86,10 @@ class AppTheme {
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     primarySwatch: Colors.grey,
-    scaffoldBackgroundColor: Color(0xFF171717),
+    scaffoldBackgroundColor: const Color(0xFF171717),
     //scaffoldBackgroundColor: Colors.black87,
 
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: Color(0xFF171717),
       foregroundColor: Colors.white,
       elevation: 0,
@@ -97,10 +97,10 @@ class AppTheme {
     ),
 
     textTheme: TextTheme(
-      bodyLarge: TextStyle(color: Colors.white), // Body text color for general readability
+      bodyLarge: const TextStyle(color: Colors.white), // Body text color for general readability
       bodyMedium: TextStyle(color: Colors.grey[300]), // Lighter grey for less emphasis text
-      titleLarge: TextStyle(color: Colors.white), // Headline text color
-      labelLarge: TextStyle(color: Colors.white), // Button text color
+      titleLarge: const TextStyle(color: Colors.white), // Headline text color
+      labelLarge: const TextStyle(color: Colors.white), // Button text color
     ),
 
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -110,12 +110,12 @@ class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
       ),
     ),
 
 
-    iconTheme: IconThemeData(color: Colors.white),
+    iconTheme: const IconThemeData(color: Colors.white),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: Colors.blue,
@@ -128,7 +128,7 @@ class AppTheme {
     cardTheme: CardTheme(
       color: Colors.grey[800],
       elevation: 4,
-      margin: EdgeInsets.all(8),
+      margin: const EdgeInsets.all(8),
     ),
 
     dividerTheme: DividerThemeData(

@@ -11,13 +11,13 @@ class LoginView extends StatefulWidget {
   final Function onSignUpPressed;
 
   const LoginView({
-    Key? key,
+    super.key,
     required this.formKey,
     required this.emailController,
     required this.passwordController,
     required this.onLoginPressed,
     required this.onSignUpPressed,
-  }) : super(key: key);
+  });
 
   @override
   State<LoginView> createState() => _LoginViewState();
@@ -140,7 +140,7 @@ class _LoginViewState extends State<LoginView> {
                       ),
                       TextButton(
                         onPressed: () => widget.onSignUpPressed(context),
-                        child: Text(
+                        child: const Text(
                           'Sign Up',
                           style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold, letterSpacing: 1),
                         ),

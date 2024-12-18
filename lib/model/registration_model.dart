@@ -10,7 +10,7 @@ class RegistrationModel {
     required String password,
     required String org,
   }) async {
-    final String uri = "${api_root}/auth/users/";
+    const String uri = "$api_root/auth/users/";
     final Map<String, String> data = {
       'email': email.trim(),
       'password': password.trim(),

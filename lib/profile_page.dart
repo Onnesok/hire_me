@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hire_me/service/profile_provider.dart';
 import 'package:hire_me/service/themeprovider.dart';
-import 'package:hire_me/theme/app_theme.dart';
 import 'package:provider/provider.dart';
-
 import 'controller/login_controller.dart';
 
 class ProfilePage extends StatelessWidget {
   final ScrollController scrollController;
 
-  const ProfilePage({Key? key, required this.scrollController}) : super(key: key);
+  const ProfilePage({super.key, required this.scrollController});
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +52,10 @@ class ProfilePage extends StatelessWidget {
                         padding: const EdgeInsets.all(3),
                         child: CircleAvatar(
                           radius: 60,
-                          backgroundColor: Theme.of(context).colorScheme.background,
-                          child: CircleAvatar(
+                          backgroundColor: Theme.of(context).colorScheme.surface,
+                          child: const CircleAvatar(
                             radius: 57,
-                            backgroundImage: const AssetImage('assets/avatar.png'),
+                            backgroundImage: AssetImage('assets/avatar.png'),
                           ),
                         ),
                       ),
@@ -215,11 +213,11 @@ class ProfilePage extends StatelessWidget {
         decoration: BoxDecoration(
           color: Theme.of(context).cardTheme.color,
           borderRadius: BorderRadius.circular(15),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.black12,
               blurRadius: 8,
-              offset: const Offset(0, 4),
+              offset: Offset(0, 4),
             ),
           ],
         ),
@@ -248,7 +246,7 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+            const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
           ],
         ),
       ),
@@ -353,58 +351,60 @@ class ProfilePage extends StatelessWidget {
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: theme.colorScheme.background,
+      backgroundColor: theme.colorScheme.surface,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
       ),
       builder: (BuildContext context) {
         return Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                "Select Theme",
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 2,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Select Theme",
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 2,
+                  ),
                 ),
-              ),
-              Divider(thickness: 0.5, color: theme.colorScheme.onPrimaryContainer),
-              _buildThemeTile(
-                context,
-                icon: Icons.wb_sunny,
-                title: "Light Theme",
-                description: "Bright and clear theme",
-                isSelected: themeProvider.themeMode == ThemeMode.light,
-                onTap: () {
-                  themeProvider.toggleTheme(ThemeMode.light);
-                  Navigator.pop(context);
-                },
-              ),
-              _buildThemeTile(
-                context,
-                icon: Icons.nightlight_round,
-                title: "Dark Theme",
-                description: "Elegant and eye-friendly",
-                isSelected: themeProvider.themeMode == ThemeMode.dark,
-                onTap: () {
-                  themeProvider.toggleTheme(ThemeMode.dark);
-                  Navigator.pop(context);
-                },
-              ),
-              _buildThemeTile(
-                context,
-                icon: Icons.brightness_auto,
-                title: "System Default",
-                description: "Follows your system preferences",
-                isSelected: themeProvider.themeMode == ThemeMode.system,
-                onTap: () {
-                  themeProvider.toggleTheme(ThemeMode.system);
-                  Navigator.pop(context);
-                },
-              ),
-            ],
+                Divider(thickness: 0.5, color: theme.colorScheme.onPrimaryContainer),
+                _buildThemeTile(
+                  context,
+                  icon: Icons.wb_sunny,
+                  title: "Light Theme",
+                  description: "Bright and clear theme",
+                  isSelected: themeProvider.themeMode == ThemeMode.light,
+                  onTap: () {
+                    themeProvider.toggleTheme(ThemeMode.light);
+                    Navigator.pop(context);
+                  },
+                ),
+                _buildThemeTile(
+                  context,
+                  icon: Icons.nightlight_round,
+                  title: "Dark Theme",
+                  description: "Elegant and eye-friendly",
+                  isSelected: themeProvider.themeMode == ThemeMode.dark,
+                  onTap: () {
+                    themeProvider.toggleTheme(ThemeMode.dark);
+                    Navigator.pop(context);
+                  },
+                ),
+                _buildThemeTile(
+                  context,
+                  icon: Icons.brightness_auto,
+                  title: "System Default",
+                  description: "Follows your system preferences",
+                  isSelected: themeProvider.themeMode == ThemeMode.system,
+                  onTap: () {
+                    themeProvider.toggleTheme(ThemeMode.system);
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
           ),
         );
       },

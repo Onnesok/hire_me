@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hire_me/controller/login_controller.dart';
-import 'package:hire_me/view/login_view.dart';
 import 'package:provider/provider.dart';
 
 import '../controller/registration_controller.dart';
@@ -39,7 +38,7 @@ class _RegistrationViewState extends State<RegistrationView> {
         onSuccess: () {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => LoginController()),
+            MaterialPageRoute(builder: (context) => const LoginController()),
           );
         },
         onError: (message) {
@@ -197,7 +196,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                                 MaterialPageRoute(builder: (context) => const LoginController()),
                               );
                             },
-                            child: Text(
+                            child: const Text(
                               'Sign In',
                               style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold, letterSpacing: 1),
                             ),
