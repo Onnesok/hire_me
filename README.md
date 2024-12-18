@@ -41,8 +41,61 @@ HireMe aims to:
 
 ---
 
+## File structure
+
+```tree
+lib/
+├── cart_page.dart 
+├── help_page.dart
+├── home.dart
+├── main.dart
+├── profile_page.dart
+├── search_page.dart
+│
+├── api/
+│   └── api_root.dart
+│
+├── controller/
+│   ├── banner_controller.dart
+│   ├── login_controller.dart
+│   ├── map_page_controller.dart
+│   ├── notification_page_controller.dart
+│   └── registration_controller.dart
+│
+├── model/
+│   ├── banner_model.dart
+│   ├── login_model.dart
+│   ├── map_page_model.dart
+│   ├── notification_page_model.dart
+│   └── registration_model.dart
+│
+├── service/
+│   ├── local_notification.dart
+│   ├── login_api_service.dart
+│   ├── profile_provider.dart
+│   └── themeprovider.dart
+│
+├── theme/
+│   └── app_theme.dart
+│
+├── view/
+│   ├── banner_list_view.dart
+│   ├── login_view.dart
+│   ├── map_page_view.dart
+│   ├── notification_page_view.dart
+│   └── registration_view.dart
+│
+└── widgets/
+    ├── appbar_home_widget.dart
+    ├── bottom_appbar.dart
+    ├── custom_input_field.dart
+    └── home_ItemGridView_widget.dart
+
+```
+
 ## 🚀 **How to Get Started**
-1. **Clone the Repository**
+**Clone the Repository**
    ```bash
    git clone https://github.com/your-repo/hireme.git
    cd hireme
+   ```
