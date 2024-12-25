@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import '../widgets/custom_input_field.dart';
 
 //TODO: 377-394,213-220 LINES TEXT FIELD CHANGE TO CUSTOM
 class HelpScreen extends StatelessWidget {
@@ -175,8 +176,30 @@ class HelpScreen extends StatelessWidget {
   }
 }
 
-class ChatPage extends StatelessWidget {
+class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
+
+  @override
+  _ChatPageState createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
+  late TextEditingController phoneNumberController;
+  late TextEditingController queryController;
+
+  @override
+  void initState() {
+    super.initState();
+    phoneNumberController = TextEditingController();
+    queryController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    phoneNumberController.dispose();
+    queryController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -207,21 +230,25 @@ class ChatPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
 
-
-            //   CUSTOM_INPUT_FIELD_DART() USE KORBO QUERY INPUT NITE.
-
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Please write your query here.',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
+            Row(
+              children: [
+                Expanded(
+                  child: CustomInputField(
+                    controller: queryController,
+                    hintText: 'Write your query here.',
+                    icon: Icons.message,
+                    isPassword: false,
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.send),
+                const SizedBox(width: 8),
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.send),
+                  color: Colors.blue,
+                ),
+              ],
             ),
           ],
         ),
@@ -229,10 +256,8 @@ class ChatPage extends StatelessWidget {
     );
   }
 }
-
 class TalkPage extends StatelessWidget {
   const TalkPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     String initialCountry = 'BD';
@@ -375,23 +400,16 @@ class _ReqPageState extends State<ReqPage> {
               const SizedBox(height: 16.0),
 
               // TextField for Contact Number
-
-              TextField(
+              CustomInputField(
                 controller: contactNumberController,
-                decoration: InputDecoration(
-                  hintText: 'Contact Number',
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: const BorderSide(
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-                style: const TextStyle(
-                  color: Colors.grey, // Ensures typed text is grey in dark mode
-                ),
+                hintText: 'Contact Number',
+                icon: Icons.phone,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter your contact number";
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16.0),
               // Submit Button

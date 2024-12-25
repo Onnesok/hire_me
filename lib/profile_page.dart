@@ -4,6 +4,7 @@ import 'package:hire_me/service/profile_provider.dart';
 import 'package:hire_me/service/themeprovider.dart';
 import 'package:provider/provider.dart';
 import 'controller/login_controller.dart';
+import 'AdminControlPage.dart'; // Add this import at the top
 
 class ProfilePage extends StatelessWidget {
   final ScrollController scrollController;
@@ -142,6 +143,18 @@ class ProfilePage extends StatelessWidget {
                   title: "Your Reviews",
                   subtitle: "Manage and view your reviews",
                   onTap: () {},
+                ),
+                _buildProfileOption(
+                  context,
+                  icon: Icons.admin_panel_settings,
+                  title: "Admin Control",
+                  subtitle: "Manage employees, admins, and customers",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AdminControlPage()),
+                    );
+                  },
                 ),
 
                 const SizedBox(height: 20),
