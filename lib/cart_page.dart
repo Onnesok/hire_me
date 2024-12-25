@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CartPage(scrollController: ScrollController()), // passing scrollController here
+      home: CartPage(scrollController: ScrollController()),
     );
   }
 }
@@ -72,9 +72,9 @@ class ViewAllServicesButton extends StatelessWidget {
         Navigator.push(
           context,
           PageRouteBuilder(
-            transitionDuration: Duration(milliseconds: 200), // Slower animation duration
+            transitionDuration: Duration(milliseconds: 200), //slower durattion for animation
             pageBuilder: (context, animation, secondaryAnimation) {
-              return SearchPage(); // Navigate to the SearchPage
+              return SearchPage(); // navigate to searchPage
             },
             transitionsBuilder: (context, animation, secondaryAnimation, child) {
               const begin = Offset(0.0, 1.0); // Start from the bottom

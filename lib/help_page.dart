@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import '../widgets/custom_input_field.dart';
 
-//TODO: 377-394,213-220 LINES TEXT FIELD CHANGE TO CUSTOM
 class HelpScreen extends StatelessWidget {
   final ScrollController scrollController;
   const HelpScreen({super.key, required this.scrollController});
