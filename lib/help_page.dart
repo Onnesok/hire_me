@@ -260,7 +260,6 @@ class TalkPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String initialCountry = 'BD';
-    PhoneNumber number = PhoneNumber(isoCode: initialCountry);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Let's Talk"),
