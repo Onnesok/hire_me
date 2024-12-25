@@ -358,7 +358,6 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-
   void _showThemeSelector(BuildContext context, ThemeProvider themeProvider) {
     final theme = Theme.of(context);
 

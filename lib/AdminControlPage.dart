@@ -52,7 +52,7 @@ class AdminControlPage extends StatelessWidget {
               title: 'Customer',
               description: 'Manage customer details',
               onTap: () {
-                // Navigate to customer list page
+                // Navigate-->customerList page
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => CustomerPage()),

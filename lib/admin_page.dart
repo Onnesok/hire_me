@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/custom_input_field.dart'; // Assuming this is where CustomInputField is defined
+import '../widgets/custom_input_field.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({super.key});
@@ -17,10 +17,8 @@ class _AdminPageState extends State<AdminPage> {
   final TextEditingController _nidController = TextEditingController();
   final TextEditingController _roleController = TextEditingController();
 
-  // List of gender options
   final List<String> genderOptions = ['Male', 'Female', 'Other'];
 
-  // Selected gender
   String? selectedGender;
 
   @override
@@ -34,7 +32,7 @@ class _AdminPageState extends State<AdminPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Add Admin Button with text on the button itself
+
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -63,7 +61,6 @@ class _AdminPageState extends State<AdminPage> {
     );
   }
 
-  // Show Add Admin Dialog with Form
   void _showAddAdminDialog() {
     showDialog(
       context: context,
@@ -76,7 +73,7 @@ class _AdminPageState extends State<AdminPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Name Input Field using CustomInputField
+
                   CustomInputField(
                     controller: _nameController,
                     hintText: 'Name',
@@ -90,7 +87,7 @@ class _AdminPageState extends State<AdminPage> {
                   ),
                   const SizedBox(height: 10),
 
-                  // Address Input Field using CustomInputField
+
                   CustomInputField(
                     controller: _addressController,
                     hintText: 'Address',
@@ -104,7 +101,6 @@ class _AdminPageState extends State<AdminPage> {
                   ),
                   const SizedBox(height: 10),
 
-                  // Phone Input Field using CustomInputField
                   CustomInputField(
                     controller: _phoneController,
                     hintText: 'Phone',
@@ -118,7 +114,7 @@ class _AdminPageState extends State<AdminPage> {
                   ),
                   const SizedBox(height: 10),
 
-                  // NID Input Field using CustomInputField
+
                   CustomInputField(
                     controller: _nidController,
                     hintText: 'NID',
@@ -132,7 +128,6 @@ class _AdminPageState extends State<AdminPage> {
                   ),
                   const SizedBox(height: 10),
 
-                  // Role Input Field using CustomInputField
                   CustomInputField(
                     controller: _roleController,
                     hintText: 'Role',
@@ -146,8 +141,6 @@ class _AdminPageState extends State<AdminPage> {
                   ),
                   const SizedBox(height: 10),
 
-                  // Gender Dropdown
-                  // Gender Dropdown
                   const Text('Gender:'),
                   DropdownButtonFormField<String>(
                     value: selectedGender,
@@ -188,7 +181,7 @@ class _AdminPageState extends State<AdminPage> {
                   ),
                   const SizedBox(height: 20),
 
-                  // Submit Button with text on the button itself
+                  // submit button
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -218,7 +211,7 @@ class _AdminPageState extends State<AdminPage> {
     );
   }
 
-  // Submit form method
+  // submit form
   void _submitForm() {
     if (_formKey.currentState?.validate() ?? false) {
       // Simulate a success message
@@ -226,7 +219,7 @@ class _AdminPageState extends State<AdminPage> {
         const SnackBar(content: Text('Admin added successfully')),
       );
 
-      // Clear form inputs after submission
+      // Clear form
       _nameController.clear();
       _addressController.clear();
       _phoneController.clear();

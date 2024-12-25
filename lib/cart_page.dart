@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hire_me/search_page.dart'; // Import the SearchPage
+import 'package:hire_me/search_page.dart'; // imorting searchPage
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CartPage(scrollController: ScrollController()), // Pass the ScrollController here
+      home: CartPage(scrollController: ScrollController()), // passing scrollController here
     );
   }
 }
@@ -60,7 +60,7 @@ class _CartPageState extends State<CartPage> with SingleTickerProviderStateMixin
   }
 }
 
-// Reusable button widget for both pages
+// reusable page widget
 class ViewAllServicesButton extends StatelessWidget {
   const ViewAllServicesButton({Key? key}) : super(key: key);
 
