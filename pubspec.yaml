@@ -51,6 +51,7 @@ dependencies:
   use_widgets: ^0.4.0
   hugeicons: ^0.0.7
   intl_phone_number_input: ^0.7.0
+  image_picker: ^0.8.5+3
 
 dev_dependencies:
   flutter_test:
