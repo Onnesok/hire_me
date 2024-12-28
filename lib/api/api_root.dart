@@ -1,1 +1,1 @@
-const String api_root = "api endpoint set koira pore ditesi";
+const String api_root = "https://hireme-api-five.vercel.app/api";
