@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hire_me/help_page.dart';
 import 'package:hire_me/service/profile_provider.dart';
 import 'package:hire_me/service/themeprovider.dart';
+import 'package:hire_me/widgets/bottom_appbar.dart';
 import 'package:provider/provider.dart';
 import 'controller/login_controller.dart';
 import 'AdminControlPage.dart'; // Add this import at the top
 
 class ProfilePage extends StatelessWidget {
   final ScrollController scrollController;
+  final Function(int) updatePageIndex;
 
-  const ProfilePage({super.key, required this.scrollController});
+  const ProfilePage({super.key, required this.scrollController, required this.updatePageIndex});
 
   @override
   Widget build(BuildContext context) {
     final profileProvider = Provider.of<ProfileProvider>(context, listen: false);
     final themeProvider = Provider.of<ThemeProvider>(context);
+
+    void _navigateTo(Widget page) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => page));
+    }
 
     return Scaffold(
       body: CustomScrollView(
@@ -168,7 +175,9 @@ class ProfilePage extends StatelessWidget {
                   icon: Icons.help_outline,
                   title: "Help Center",
                   subtitle: "Get assistance with your issues",
-                  onTap: () {},
+                  onTap: () {
+                    _navigateTo(HelpScreen(scrollController: scrollController));
+                  },
                 ),
                 _buildProfileOption(
                   context,

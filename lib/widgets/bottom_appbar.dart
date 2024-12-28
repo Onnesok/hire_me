@@ -16,11 +16,17 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
   int _currentPage = 0;
   final ScrollController _scrollController = ScrollController();
 
+  void _updatePageIndex(int index) {
+    setState(() {
+      _currentPage = index;
+    });
+  }
+
   late final List<Widget> _pages = [
     Home(controller: _scrollController),
     CartPage(scrollController: _scrollController),
     HelpScreen(scrollController: _scrollController,),
-    ProfilePage(scrollController: _scrollController),
+    ProfilePage(scrollController: _scrollController, updatePageIndex: _updatePageIndex,),
   ];
 
   @override
@@ -33,6 +39,7 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true, // Ensures seamless bottom navigation
+      extendBodyBehindAppBar: true,
       body: _pages[_currentPage],
       bottomNavigationBar: DotCurvedBottomNav(
         scrollController: _scrollController,
