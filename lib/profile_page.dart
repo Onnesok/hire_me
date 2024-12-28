@@ -13,6 +13,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileProvider = Provider.of<ProfileProvider>(context, listen: false);
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
@@ -65,7 +66,7 @@ class ProfilePage extends StatelessWidget {
                     const SizedBox(height: 12),
 
                     Text(
-                      "Default User",
+                      "${profileProvider.username}",
                       style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1.2
@@ -73,7 +74,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      "Software Developer",
+                      "Role: ${profileProvider.role}",
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: Colors.grey,
                       ),
@@ -144,18 +145,20 @@ class ProfilePage extends StatelessWidget {
                   subtitle: "Manage and view your reviews",
                   onTap: () {},
                 ),
-                _buildProfileOption(
-                  context,
-                  icon: Icons.admin_panel_settings,
-                  title: "Admin Control",
-                  subtitle: "Manage employees, admins, and customers",
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AdminControlPage()),
-                    );
-                  },
-                ),
+                if (profileProvider.role == 'admin')
+                  _buildProfileOption(
+                    context,
+                    icon: Icons.admin_panel_settings,
+                    iconColor: Colors.red,
+                    title: "Admin Control",
+                    subtitle: "Manage employees, admins, and customers",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AdminControlPage()),
+                      );
+                    },
+                  ),
 
                 const SizedBox(height: 20),
 
