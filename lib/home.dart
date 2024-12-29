@@ -5,8 +5,10 @@ import 'package:hire_me/search_page.dart';
 import 'package:hire_me/service/local_notification.dart';
 import 'package:hire_me/service/profile_provider.dart';
 import 'package:hire_me/service/themeprovider.dart';
+import 'package:hire_me/service_booking_page.dart';
 import 'package:hire_me/view/banner_list_view.dart';
 import 'package:hire_me/widgets/appbar_home_widget.dart';
+import 'package:hire_me/widgets/custom_bottom_sheet.dart';
 import 'package:hire_me/widgets/home_ItemGridView_widget.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:provider/provider.dart';
@@ -24,42 +26,42 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final List<String> itemList = [
-    'Plumbing',
+    'Plumber',
     'Electrician',
-    'Cleaning',
-    'Painting',
-    'Gardening',
-    'Carpentry',
+    'Cleaner',
+    'Painter',
+    'Gardener',
+    'Carpenter',
     'Maid Service',
     'Pest Control',
-    'AC Repair',
+    'Ac Repair',
     'More Services'
   ];
 
   final Map<String, IconData> serviceIcons = {
-    'Plumbing': HugeIcons.strokeRoundedWaterPump,
+    'Plumber': HugeIcons.strokeRoundedWaterPump,
     'Electrician': HugeIcons.strokeRoundedElectricHome01,
-    'Cleaning': HugeIcons.strokeRoundedCleaningBucket,
-    'Painting': HugeIcons.strokeRoundedPaintBrush02,
-    'Gardening': HugeIcons.strokeRoundedPlant02,
-    'Carpentry': HugeIcons.strokeRoundedArtboardTool,
+    'Cleaner': HugeIcons.strokeRoundedCleaningBucket,
+    'Painter': HugeIcons.strokeRoundedPaintBrush02,
+    'Gardener': HugeIcons.strokeRoundedPlant02,
+    'Carpenter': HugeIcons.strokeRoundedArtboardTool,
     'Maid Service': HugeIcons.strokeRoundedService,
     'Pest Control': HugeIcons.strokeRoundedBug01,
-    'AC Repair': Icons.ac_unit_outlined,
+    'Ac Repair': Icons.ac_unit_outlined,
     'More Services': HugeIcons.strokeRoundedDashboardCircleAdd,
   };
 
   // Map of colors for icons
   final Map<String, Color> serviceColors = const {
-    'Plumbing': Colors.blueAccent,
+    'Plumber': Colors.blueAccent,
     'Electrician': Colors.orangeAccent,
-    'Cleaning': Colors.greenAccent,
-    'Painting': Colors.purpleAccent,
-    'Gardening': Colors.teal,
-    'Carpentry': Colors.brown,
+    'Cleaner': Colors.greenAccent,
+    'Painter': Colors.purpleAccent,
+    'Gardener': Colors.teal,
+    'Carpenter': Colors.brown,
     'Maid Service': Colors.pinkAccent,
     'Pest Control': Colors.redAccent,
-    'AC Repair': Colors.cyan,
+    'Ac Repair': Colors.cyan,
     'More Services':Colors.deepOrange,
   };
 
@@ -72,9 +74,6 @@ class _HomeState extends State<Home> {
     super.initState();
     filteredItems = itemList; // Initially showing all items
     searchController.addListener(_filterItems);
-  }
-  void _filt(){
-
   }
   void _filterItems() {
     setState(() {
@@ -169,21 +168,22 @@ class _HomeState extends State<Home> {
                             },
                           );
                         } else {
-                          // Normal behavior for other items
-                          LocalNotificationService.showNotification(
-                            id: 1,
-                            title: "Service Request",
-                            body: "You tapped on $item.",
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ServiceBooking(service: item),
+                            ),
                           );
-                          Fluttertoast.showToast(msg: "Tapped on $item");
                         }
                       },
                       serviceIcons: serviceIcons,
                       serviceColors: serviceColors,
                     ),
+
                   ],
                 ),
               ),
+
               // Featured Service Providers
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
@@ -422,44 +422,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-class CustomBottomSheet extends StatelessWidget {
-  final String title;
-  final List<Widget> children;
-
-  const CustomBottomSheet({required this.title, required this.children, Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.8,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        child: Container(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  title,
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Divider(color: Colors.grey.withOpacity(0.5)),
-              ...children,
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-
