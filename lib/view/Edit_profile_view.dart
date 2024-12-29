@@ -99,40 +99,42 @@ class _EditProfileViewState extends State<EditProfileView> {
 
     return Scaffold(
       appBar: AppBar(title: const Text("Edit Profile"), centerTitle: true),
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.all(20.0),
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/ui/background.png'),
-                fit: BoxFit.cover,
-              ),
+      body: Form(
+        key: _formKey,
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.9,
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.all(20.0),
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/ui/background.png'),
+              fit: BoxFit.cover,
             ),
+          ),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
             child: Column(
               children: [
-
+            
                 const SizedBox(height: 30),
-
+            
                 CircleAvatar(radius: 50, backgroundImage: NetworkImage(_user!.profilePicture)),
-
+            
                 Divider(),
-
+            
                 Center(child: Text("${_user!.role} account", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18))),
-
+            
                 Divider(),
-
+            
                 const SizedBox(height: 20),
-
+            
                 CustomInputField(
                   controller: _nameController,
                   hintText: "Enter your name",
                   icon: Icons.person_outline,
                   validator: (value) => value?.isEmpty == true ? "Please enter your name" : null,
                 ),
-
+            
                 Container(
                   width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
@@ -142,7 +144,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                   ),
                   child: Text(_emailController.text),
                 ),
-
+            
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child:Row(
@@ -153,7 +155,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                     ],
                   ),
                 ),
-
+            
                 CustomInputField(
                   controller: _phoneController,
                   isNumeric: true,
@@ -161,16 +163,16 @@ class _EditProfileViewState extends State<EditProfileView> {
                   icon: Icons.phone_outlined,
                   validator: (value) => value?.isEmpty == true ? "Please enter your phone number" : null,
                 ),
-
+            
                 CustomInputField(
                   controller: _addressController,
                   hintText: "Enter your address",
                   icon: Icons.home_outlined,
                   validator: (value) => value?.isEmpty == true ? "Please enter your address" : null,
                 ),
-
+            
                 const SizedBox(height: 20),
-
+            
                 AppTheme.gradientButton(
                   text: "Update",
                   onPressed: () {
