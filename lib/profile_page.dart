@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hire_me/help_page.dart';
+import 'package:hire_me/service/permissions_page.dart';
 import 'package:hire_me/service/profile_provider.dart';
 import 'package:hire_me/service/themeprovider.dart';
 import 'package:hire_me/view/Edit_profile_view.dart';
@@ -130,10 +131,10 @@ class ProfilePage extends StatelessWidget {
                 _buildProfileOption(
                   context,
                   icon: Icons.notifications_outlined,
-                  title: "Notification Settings",
-                  subtitle: "Manage your notifications",
+                  title: "Permission Settings",
+                  subtitle: "Manage your permissions",
                   onTap: () {
-                    _toast("coming soon");
+                    _navigateTo(PermissionSettings());
                   },
                 ),
                 _buildProfileOption(
