@@ -4,6 +4,7 @@ import 'package:hire_me/help_page.dart';
 import 'package:hire_me/service/profile_provider.dart';
 import 'package:hire_me/service/themeprovider.dart';
 import 'package:hire_me/view/Edit_profile_view.dart';
+import 'package:hire_me/view/change_password_view.dart';
 import 'package:hire_me/widgets/bottom_appbar.dart';
 import 'package:provider/provider.dart';
 import 'controller/login_controller.dart';
@@ -119,7 +120,7 @@ class ProfilePage extends StatelessWidget {
                   title: "Change Password",
                   subtitle: "Update your password for security",
                   onTap: () {
-                    _toast("coming soon");
+                    _navigateTo(ChangePassword());
                   },
                 ),
 
