@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hire_me/help_page.dart';
 import 'package:hire_me/service/profile_provider.dart';
 import 'package:hire_me/service/themeprovider.dart';
+import 'package:hire_me/view/Edit_profile_view.dart';
 import 'package:hire_me/widgets/bottom_appbar.dart';
 import 'package:provider/provider.dart';
 import 'controller/login_controller.dart';
@@ -21,6 +22,9 @@ class ProfilePage extends StatelessWidget {
 
     void _navigateTo(Widget page) {
       Navigator.push(context, MaterialPageRoute(builder: (context) => page));
+    }
+    void _toast(String msg) {
+      Fluttertoast.showToast(msg: msg, gravity: ToastGravity.CENTER, backgroundColor: Colors.red);
     }
 
     return Scaffold(
@@ -105,14 +109,18 @@ class ProfilePage extends StatelessWidget {
                   icon: Icons.person_outline,
                   title: "Edit Profile",
                   subtitle: "Update your personal details",
-                  onTap: () {},
+                  onTap: () {
+                    _navigateTo(EditProfileView());
+                  },
                 ),
                 _buildProfileOption(
                   context,
                   icon: Icons.lock_outline,
                   title: "Change Password",
                   subtitle: "Update your password for security",
-                  onTap: () {},
+                  onTap: () {
+                    _toast("coming soon");
+                  },
                 ),
 
                 const SizedBox(height: 20),
@@ -123,7 +131,9 @@ class ProfilePage extends StatelessWidget {
                   icon: Icons.notifications_outlined,
                   title: "Notification Settings",
                   subtitle: "Manage your notifications",
-                  onTap: () {},
+                  onTap: () {
+                    _toast("coming soon");
+                  },
                 ),
                 _buildProfileOption(
                   context,
@@ -143,14 +153,18 @@ class ProfilePage extends StatelessWidget {
                   icon: Icons.history_outlined,
                   title: "Service History",
                   subtitle: "Check your past services",
-                  onTap: () {},
+                  onTap: () {
+                    _toast("coming soon");
+                  },
                 ),
                 _buildProfileOption(
                   context,
                   icon: Icons.star_outline,
                   title: "Your Reviews",
                   subtitle: "Manage and view your reviews",
-                  onTap: () {},
+                  onTap: () {
+                    _toast("coming soon");
+                  },
                 ),
                 if (profileProvider.role == 'admin')
                   _buildProfileOption(
@@ -184,7 +198,9 @@ class ProfilePage extends StatelessWidget {
                   icon: Icons.feedback_outlined,
                   title: "Feedback",
                   subtitle: "Share your feedback with us",
-                  onTap: () {},
+                  onTap: () {
+                    _toast("coming soon");
+                  },
                 ),
 
                 const SizedBox(height: 30),

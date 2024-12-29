@@ -8,6 +8,9 @@ class CustomInputField extends StatelessWidget {
   final bool isPasswordVisible;
   final VoidCallback? onTogglePasswordVisibility;
   final String? Function(String?)? validator;
+  final bool readonlyVar;
+  final String helper;
+  final bool isNumeric;
 
   const CustomInputField({
     super.key,
@@ -18,6 +21,9 @@ class CustomInputField extends StatelessWidget {
     this.isPasswordVisible = false,
     this.onTogglePasswordVisibility,
     this.validator,
+    this.readonlyVar = false,
+    this.helper = "",
+    this.isNumeric = false,
   });
 
   @override
@@ -29,9 +35,13 @@ class CustomInputField extends StatelessWidget {
       child: TextFormField(
         style: const TextStyle(color: Colors.black),
         controller: controller,
+        keyboardType: isNumeric ? TextInputType.number : TextInputType.text,
         obscureText: isPassword && !isPasswordVisible,
         decoration: InputDecoration(
           hintText: hintText,
+          helperText: helper.isNotEmpty ? helper : null,
+          helperStyle: TextStyle(color: Colors.yellow, letterSpacing: 2),
+          fillColor: readonlyVar ? Colors.grey[200] : null,
           prefixIcon: Icon(icon),
           suffixIcon: isPassword
               ? IconButton(
@@ -42,6 +52,7 @@ class CustomInputField extends StatelessWidget {
           )
               : null,
         ),
+        readOnly: readonlyVar,
         validator: validator,
       ),
     );
