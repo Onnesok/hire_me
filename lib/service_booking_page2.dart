@@ -158,7 +158,7 @@ class _ServiceBookingDetailsState extends State<ServiceBookingDetails> {
         padding: const EdgeInsets.all(16),
         color: theme.scaffoldBackgroundColor,
         child: AppTheme.gradientButton(
-          text: "Sign In",
+          text: "Book Now",
           onPressed: () => _bookService(),
         ),
       ),
