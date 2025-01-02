@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hire_me/api/api_root.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -10,8 +11,8 @@ class CustomerPage extends StatefulWidget {
 }
 
 class _CustomerPageState extends State<CustomerPage> {
-  final String apiUrl = "https://hireme-api-five.vercel.app/api/users";
-  final String blockCustomerApiUrl = "https://hireme-api-five.vercel.app/api/block"; // Block API
+  final String apiUrl = "${api_root}/users";
+  final String blockCustomerApiUrl = "${api_root}/block"; // Block API
 
   bool isLoading = true;
   List<dynamic> customers = [];

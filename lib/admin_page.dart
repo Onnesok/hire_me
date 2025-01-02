@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hire_me/api/api_root.dart';
 import 'dart:convert'; // For JSON decoding
 import 'package:http/http.dart' as http;
 
@@ -10,10 +11,10 @@ class AdminPage extends StatefulWidget {
 }
 
 class _AdminPageState extends State<AdminPage> {
-  final String apiUrl = "https://hireme-api-five.vercel.app/api/admins";
-  final String addAdminApiUrl = "https://hireme-api-five.vercel.app/api/register";
-  final String deleteAdminApiUrl = "https://hireme-api-five.vercel.app/api/admins";
-  final String blockAdminApiUrl = "https://hireme-api-five.vercel.app/api/block"; // Block API
+  final String apiUrl = "${api_root}/admins";
+  final String addAdminApiUrl = "${api_root}/register";
+  final String deleteAdminApiUrl = "${api_root}/admins";
+  final String blockAdminApiUrl = "${api_root}/block"; // Block API
 
   final _formKey = GlobalKey<FormState>();
 
