@@ -1,156 +1,253 @@
 import 'package:flutter/material.dart';
-import 'package:hire_me/service/themeprovider.dart';
-import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:hire_me/api/api_root.dart';
+import 'package:hire_me/service_booking_page2.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
-
   @override
-  State<SearchPage> createState() => _SearchPageState();
+  _SearchPageState createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
-  // Filtering dropdowns variables
-  String? selectedService;
-  String? selectedArea;
-  String? selectedDate;
+  DateTime _selectedDate = DateTime.now();
+  String _selectedService = 'Plumber'; // Default service
+  List<dynamic> availableProviders = [];
+  bool isLoading = false;
 
-  List<String> serviceList=[
-    'Plumbing',
-    'Electrician',
-    'Cleaning',
-    'Painting',
-    'Gardening',
-    'Carpentry',
-    'Maid Service',
-    'Pest Control',
-    'AC Repair',
-  ];
-  List<String> areaList = ['Mohakhali', 'Savar', 'Bashundhara', 'Mirpur', 'Gulshan', 'Banani'];
-  List<String> dateList = ['Today', 'Tomorrow', 'Next Week'];
+  // Fetch providers from the API
+  Future<void> _fetchProviders() async {
+    setState(() {
+      isLoading = true;
+    });
 
-  // show or hide filter_variables
-  bool _filtersVisible = false;
+    String formattedDate = DateFormat('yyyy-MM-dd').format(_selectedDate);
+    String apiUrl = "${api_root}/employees/work/free?date=${formattedDate}&role=${_selectedService}";
+    print(apiUrl);
+
+    try {
+      final response = await http.get(Uri.parse(apiUrl));
+      if (response.statusCode == 200) {
+        setState(() {
+          availableProviders = json.decode(response.body);
+        });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to fetch providers. Please try again later.')),
+        );
+      }
+    } catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('An error occurred. Please check your connection.')),
+      );
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  // Generate a list of dates for the slider
+  List<DateTime> _generateDates() {
+    DateTime today = DateTime.now();
+    return List.generate(30, (index) => today.add(Duration(days: index)));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchProviders();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    final theme = Theme.of(context);
+    String formattedDate = DateFormat('yyyy-MM-dd').format(_selectedDate);
+    List<DateTime> dateList = _generateDates();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Search'),
+        title: Text('Search for Service Providers'),
+        centerTitle: true,
+        elevation: 0,
+        scrolledUnderElevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 8),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Hero(
-              tag: 'searchBar',
-              child: Material(
-                color: Colors.transparent,
-                child: TextField(
-                  style: const TextStyle(color: Colors.black),
-                  decoration: InputDecoration(
-                    hintText: 'Search services...',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                        width: 1,
+            // Select Service Dropdown
+            Text(
+              'Select a Service:',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, letterSpacing: 1.5),
+            ),
+            SizedBox(height: 10),
+            DropdownButton<String>(
+              value: _selectedService,
+              onChanged: (value) {
+                setState(() {
+                  _selectedService = value!;
+                });
+                _fetchProviders();
+              },
+              items: ['Plumber',
+                'Electrician',
+                'Cleaner',
+                'Painter',
+                'Gardener',
+                'Carpenter',
+                'Maid Service',
+                'Pest Control',
+                'Ac Repair'] // Add your service list here
+                  .map((service) => DropdownMenuItem(
+                value: service,
+                child: Text(service),
+              ))
+                  .toList(),
+            ),
+
+            // Date Selection
+            SizedBox(height: 15),
+            Divider(),
+            Text(
+              'Select a Date:',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, letterSpacing: 1.5),
+            ),
+            SizedBox(height: 10),
+            Container(
+              height: 80,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: dateList.length,
+                itemBuilder: (context, index) {
+                  DateTime date = dateList[index];
+                  bool isSelected = date.day == _selectedDate.day &&
+                      date.month == _selectedDate.month &&
+                      date.year == _selectedDate.year;
+
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _selectedDate = date;
+                      });
+                      _fetchProviders();
+                    },
+                    child: Container(
+                      width: 60,
+                      margin: EdgeInsets.symmetric(horizontal: 8),
+                      decoration: BoxDecoration(
+                        color: isSelected ? Colors.blueAccent : Colors.grey[200],
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          if (isSelected)
+                            BoxShadow(
+                              color: Colors.blue.withOpacity(0.4),
+                              blurRadius: 8,
+                              offset: Offset(0, 4),
+                            )
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            DateFormat('EEE').format(date),
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: isSelected ? Colors.white : Colors.black54,
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            '${date.day}',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: isSelected ? Colors.white : Colors.black,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    suffixIcon: const Icon(Icons.search),
+                  );
+                },
+              ),
+            ),
+
+            // Display Available Providers
+            SizedBox(height: 20),
+            Divider(),
+            SizedBox(height: 6),
+            Text(
+              'Available Providers:',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, letterSpacing: 1.5),
+            ),
+            SizedBox(height: 10),
+
+            isLoading
+                ? Center(child: CircularProgressIndicator())
+                : availableProviders.isEmpty
+                ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.network(
+                    'https://cdn-icons-png.flaticon.com/512/4076/4076549.png',
+                    width: 150,
                   ),
-                ),
+                  SizedBox(height: 20),
+                  Text(
+                    'No providers available.',
+                    style: TextStyle(fontSize: 18, color: Colors.grey),
+                  ),
+                ],
+              ),
+            )
+                : Expanded(
+              child: ListView.builder(
+                itemCount: availableProviders.length,
+                itemBuilder: (context, index) {
+                  var provider = availableProviders[index];
+                  String name = provider['username'] ?? 'Unknown Provider';
+                  String role = provider['role'] ?? 'Unknown Role';
+                  String phone = provider['phone_number'] ?? 'No Phone Number';
+                  String profilePicture = provider['profile_picture'] ?? 'https://via.placeholder.com/150';
+
+                  return Card(
+                    margin: EdgeInsets.symmetric(vertical: 8),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 4,
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(profilePicture),
+                      ),
+                      title: Text(
+                        name,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('$role\nPhone: $phone'),
+                      trailing: Icon(Icons.check_circle, color: Colors.green),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ServiceBookingDetails(
+                              selectedDate: formattedDate,
+                              employeeDetails: provider,
+                              serviceName: _selectedService,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
             ),
-            const SizedBox(height: 20),
-
-            // Show/Hide Filters Button
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  _filtersVisible = !_filtersVisible;
-                });
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(themeProvider.isDarkMode ? Colors.grey : Colors.blue),
-                padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 18,horizontal:24)),
-              ),
-              child: Text(
-                _filtersVisible ? 'Hide Filters' : 'Show Filters',
-                style: TextStyle(
-                  color: themeProvider.isDarkMode ? Colors.black : Colors.white,
-                  fontSize: 12,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-
-            // 3 filter section---only visible if _filtersVisible is true)
-            if (_filtersVisible)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Service Dropdown
-                    DropdownButton<String>(
-                      value: selectedService,
-                      hint: Text('Select Service'),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          selectedService = newValue;
-                        });
-                      },
-                      items: serviceList.map<DropdownMenuItem<String>>((String service) {
-                        return DropdownMenuItem<String>(
-                          value: service,
-                          child: Text(service),
-                        );
-                      }).toList(),
-                    ),
-
-                    const SizedBox(height: 10),
-
-                    // Area Dropdown
-                    DropdownButton<String>(
-                      value: selectedArea,
-                      hint: Text('Select Area'),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          selectedArea = newValue;
-                        });
-                      },
-                      items: areaList.map<DropdownMenuItem<String>>((String area) {
-                        return DropdownMenuItem<String>(
-                          value: area,
-                          child: Text(area),
-                        );
-                      }).toList(),
-                    ),
-
-                    const SizedBox(height: 10),
-
-                    // Date Dropdown
-                    DropdownButton<String>(
-                      value: selectedDate,
-                      hint: Text('Select Date'),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          selectedDate = newValue;
-                        });
-                      },
-                      items: dateList.map<DropdownMenuItem<String>>((String date) {
-                        return DropdownMenuItem<String>(
-                          value: date,
-                          child: Text(date),
-                        );
-                      }).toList(),
-                    ),
-                  ],
-                ),
-              ),
           ],
         ),
       ),
