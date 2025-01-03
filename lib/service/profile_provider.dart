@@ -64,7 +64,14 @@ class ProfileProvider with ChangeNotifier {
   }
 
   /// Save profile data to SharedPreferences
-  Future<void> saveProfileData(String username, String email, String phoneNumber, String? profilePicture, String? address, String? role, String? createdAt, String? updatedAt) async {
+  Future<void> saveProfileData(
+      String username,
+      String email,
+      String phoneNumber,
+      String? profilePicture,
+      String? address,
+      String? role,
+      ) async {
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -76,13 +83,12 @@ class ProfileProvider with ChangeNotifier {
         'profile_picture': profilePicture,
         'address': address,
         'role': role,
-        'createdAt': createdAt,
-        'updatedAt': updatedAt,
       };
 
       // Save profile data as a JSON string
       await prefs.setString('profile_data', jsonEncode(data));
 
+      // Save the individual values locally
       _id = '';
       _username = username;
       _email = email;
@@ -90,14 +96,15 @@ class ProfileProvider with ChangeNotifier {
       _profilePicture = profilePicture;
       _address = address;
       _role = role;
-      _createdAt = createdAt;
-      _updatedAt = updatedAt;
+      _createdAt = null;
+      _updatedAt = null;
 
       notifyListeners();
     } catch (e) {
       debugPrint('Error saving profile data: $e');
     }
   }
+
 
   /// Save login status
   Future<void> updateLoginStatus(bool status) async {
