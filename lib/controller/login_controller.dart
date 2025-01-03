@@ -73,12 +73,12 @@ class _LoginControllerState extends State<LoginController> {
           final avatar = userData['profile_picture'] ?? '';
           final address = userData['address'] ?? 'Unknown';
           final role = userData['role'] ?? 'Unknown';
-          final createdAt = userData['createdAt'] ?? '';
-          final updatedAt = userData['updatedAt'] ?? '';
+          //final createdAt = userData['createdAt'] ?? '';
+          //final updatedAt = userData['updatedAt'] ?? '';
 
           // Saving.....
           final profileProvider = Provider.of<ProfileProvider>(context, listen: false);
-          await profileProvider.saveProfileData(name, email, phoneNumber, avatar, address, role, createdAt, updatedAt);
+          await profileProvider.saveProfileData(name, email, phoneNumber, avatar, address, role);
 
           // Saving login status jate gutaguti na kora lage prottekbar
           await LogInStatus();
