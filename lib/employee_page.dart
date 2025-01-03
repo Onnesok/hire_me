@@ -180,6 +180,7 @@ class _EmployeePageState extends State<EmployeePage> {
                       hintText: 'Username',
                       icon: Icon(Icons.person),
                     ),
+                    style: TextStyle(color: Colors.black87),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a username';
@@ -194,6 +195,7 @@ class _EmployeePageState extends State<EmployeePage> {
                       hintText: 'Email',
                       icon: Icon(Icons.email),
                     ),
+                    style: TextStyle(color: Colors.black87),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter an email';
@@ -208,6 +210,7 @@ class _EmployeePageState extends State<EmployeePage> {
                       hintText: 'Phone Number',
                       icon: Icon(Icons.phone),
                     ),
+                    style: TextStyle(color: Colors.black87),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a phone number';
@@ -222,6 +225,7 @@ class _EmployeePageState extends State<EmployeePage> {
                       hintText: 'Role',
                       icon: Icon(Icons.work),
                     ),
+                    style: TextStyle(color: Colors.black87),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a role';
@@ -237,6 +241,7 @@ class _EmployeePageState extends State<EmployeePage> {
                       icon: Icon(Icons.lock),
                     ),
                     obscureText: true, // Make the password field hidden
+                    style: TextStyle(color: Colors.black87),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a password';
@@ -251,6 +256,7 @@ class _EmployeePageState extends State<EmployeePage> {
                       hintText: 'Address',
                       icon: Icon(Icons.location_on),
                     ),
+                    style: TextStyle(color: Colors.black87),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter an address';
@@ -265,6 +271,7 @@ class _EmployeePageState extends State<EmployeePage> {
                       hintText: 'Profile Picture URL',
                       icon: Icon(Icons.image),
                     ),
+                    style: TextStyle(color: Colors.black87),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a profile picture URL';
@@ -273,17 +280,19 @@ class _EmployeePageState extends State<EmployeePage> {
                     },
                   ),
                   const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: addEmployee,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: addEmployee,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                       ),
+                      child: const Text('Submit', style: TextStyle(fontSize: 16)),
                     ),
-                    child: const Text('Submit', style: TextStyle(fontSize: 16)),
                   ),
                 ],
               ),
@@ -299,6 +308,8 @@ class _EmployeePageState extends State<EmployeePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Employee Management"),
+        scrolledUnderElevation: 0,
+        elevation: 0,
       ),
       body: Column(
         children: [

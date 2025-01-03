@@ -83,6 +83,8 @@ class _CustomerPageState extends State<CustomerPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Customer Management"),
+        elevation: 0,
+        scrolledUnderElevation: 0,
       ),
       body: Column(
         children: [

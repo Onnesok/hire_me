@@ -176,6 +176,7 @@ class _AdminPageState extends State<AdminPage> {
                       hintText: 'Username',
                       icon: Icon(Icons.person),
                     ),
+                    style: TextStyle(color: Colors.black87),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a username';
@@ -190,6 +191,7 @@ class _AdminPageState extends State<AdminPage> {
                       hintText: 'Email',
                       icon: Icon(Icons.email),
                     ),
+                    style: TextStyle(color: Colors.black87),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter an email';
@@ -204,6 +206,8 @@ class _AdminPageState extends State<AdminPage> {
                       hintText: 'Phone Number',
                       icon: Icon(Icons.phone),
                     ),
+                    style: TextStyle(color: Colors.black87),
+                    keyboardType: TextInputType.phone,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a phone number';
@@ -218,6 +222,7 @@ class _AdminPageState extends State<AdminPage> {
                       hintText: 'Role',
                       icon: Icon(Icons.work),
                     ),
+                    style: TextStyle(color: Colors.black87),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a role';
@@ -233,6 +238,7 @@ class _AdminPageState extends State<AdminPage> {
                       icon: Icon(Icons.lock),
                     ),
                     obscureText: true, // Make the password field hidden
+                    style: TextStyle(color: Colors.black87),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a password';
@@ -247,6 +253,7 @@ class _AdminPageState extends State<AdminPage> {
                       hintText: 'Address',
                       icon: Icon(Icons.location_on),
                     ),
+                    style: TextStyle(color: Colors.black87),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter an address';
@@ -261,6 +268,7 @@ class _AdminPageState extends State<AdminPage> {
                       hintText: 'Profile Picture URL',
                       icon: Icon(Icons.image),
                     ),
+                    style: TextStyle(color: Colors.black87),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a profile picture URL';
@@ -269,17 +277,19 @@ class _AdminPageState extends State<AdminPage> {
                     },
                   ),
                   const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: addAdmin,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: addAdmin,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                       ),
+                      child: const Text('Submit', style: TextStyle(fontSize: 16)),
                     ),
-                    child: const Text('Submit', style: TextStyle(fontSize: 16)),
                   ),
                 ],
               ),
@@ -295,6 +305,8 @@ class _AdminPageState extends State<AdminPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Admin Management"),
+        elevation: 0,
+        scrolledUnderElevation: 0,
       ),
       body: Column(
         children: [
