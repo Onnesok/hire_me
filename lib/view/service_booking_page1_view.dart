@@ -1,66 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:hire_me/api/api_root.dart';
 import 'package:hire_me/service_booking_page2.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:intl/intl.dart';
+import '../controller/service_booking_page1_controller.dart';
+import '../model/servicce_booking_page1_model.dart';
 
-class ServiceBooking extends StatefulWidget {
+class ServiceBookingView extends StatefulWidget {
   final String service;
 
-  const ServiceBooking({required this.service, Key? key}) : super(key: key);
+  const ServiceBookingView({required this.service, Key? key}) : super(key: key);
 
   @override
-  _ServiceBookingState createState() => _ServiceBookingState();
+  _ServiceBookingViewState createState() => _ServiceBookingViewState();
 }
 
-class _ServiceBookingState extends State<ServiceBooking> {
+class _ServiceBookingViewState extends State<ServiceBookingView> {
   DateTime _selectedDate = DateTime.now();
   List<dynamic> availableProviders = [];
   bool isLoading = false;
+  late ServiceBookingController1 _controller;
 
-  // Fetch providers from the API
+  @override
+  void initState() {
+    super.initState();
+    _controller = ServiceBookingController1(ServiceBookingModel1());
+    _fetchProviders();
+  }
+
+  // Fetch providers from the controller
   Future<void> _fetchProviders() async {
     setState(() {
       isLoading = true;
     });
-
-    String formattedDate = DateFormat('yyyy-MM-dd').format(_selectedDate);
-    String apiUrl = "${api_root}/employees/work/free?date=${formattedDate}&role=${widget.service}";
-    print(apiUrl);
-    try {
-      final response = await http.get(Uri.parse(apiUrl));
-      if (response.statusCode == 200) {
-        setState(() {
-          availableProviders = json.decode(response.body);
-        });
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-              content: Text('Failed to fetch providers. Please try again later.')),
-        );
-      }
-    } catch (error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('An error occurred. Please check your connection.')),
-      );
-    } finally {
-      setState(() {
-        isLoading = false;
-      });
-    }
+    var providers = await _controller.fetchProviders(context, widget.service, _selectedDate);
+    setState(() {
+      availableProviders = providers;
+      isLoading = false;
+    });
   }
 
   // Generate a list of dates for the slider
   List<DateTime> _generateDates() {
     DateTime today = DateTime.now();
     return List.generate(30, (index) => today.add(Duration(days: index)));
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _fetchProviders();
   }
 
   @override
@@ -83,7 +64,6 @@ class _ServiceBookingState extends State<ServiceBooking> {
           children: [
             Center(
               child: Container(
-                //padding: EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -97,8 +77,7 @@ class _ServiceBookingState extends State<ServiceBooking> {
                 ),
               ),
             ),
-
-            SizedBox(height: 15,),
+            SizedBox(height: 15),
             Divider(),
             Text(
               'Select a Date:',
@@ -167,13 +146,11 @@ class _ServiceBookingState extends State<ServiceBooking> {
             SizedBox(height: 20),
             Divider(),
             SizedBox(height: 6),
-
             Text(
               'Available Providers:',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, letterSpacing: 1.5),
             ),
             SizedBox(height: 10),
-
             isLoading
                 ? Center(child: CircularProgressIndicator())
                 : availableProviders.isEmpty
@@ -242,4 +219,3 @@ class _ServiceBookingState extends State<ServiceBooking> {
     );
   }
 }
-//

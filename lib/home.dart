@@ -5,8 +5,8 @@ import 'package:hire_me/search_page.dart';
 import 'package:hire_me/service/local_notification.dart';
 import 'package:hire_me/service/profile_provider.dart';
 import 'package:hire_me/service/themeprovider.dart';
-import 'package:hire_me/service_booking_page.dart';
 import 'package:hire_me/view/banner_list_view.dart';
+import 'package:hire_me/view/service_booking_page1_view.dart';
 import 'package:hire_me/widgets/appbar_home_widget.dart';
 import 'package:hire_me/widgets/custom_bottom_sheet.dart';
 import 'package:hire_me/widgets/home_ItemGridView_widget.dart';
@@ -171,7 +171,7 @@ class _HomeState extends State<Home> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ServiceBooking(service: item),
+                              builder: (context) => ServiceBookingView(service: item,),
                             ),
                           );
                         }
