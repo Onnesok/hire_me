@@ -8,7 +8,7 @@ class RegistrationController {
     required String name,
     required String email,
     required String password,
-    required String org,
+    required String role,
     required Function onSuccess,
     required Function(String message) onError,
   }) async {
@@ -16,7 +16,7 @@ class RegistrationController {
       name: name,
       email: email,
       password: password,
-      org: org,
+      role: role,
     );
 
     if (response['status'] == 201) {

@@ -21,7 +21,6 @@ class _RegistrationViewState extends State<RegistrationView> {
   bool _isConfirmPasswordVisible = false;
 
   final TextEditingController _NameController = TextEditingController();
-  final TextEditingController _OrgController = TextEditingController(text: 'BRAC University');
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
@@ -34,7 +33,7 @@ class _RegistrationViewState extends State<RegistrationView> {
         name: _NameController.text,
         email: _emailController.text,
         password: _passwordController.text,
-        org: _OrgController.text,
+        role: "user",
         onSuccess: () {
           Navigator.pushReplacement(
             context,
@@ -172,10 +171,9 @@ class _RegistrationViewState extends State<RegistrationView> {
                       text: "Register account",
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          Fluttertoast.showToast(msg: "Api ekhono connect kori nai :v");
+                          _registerUser();
                         }
                       }
-                      //onPressed: () => _registerUser,
                     ),
 
                     const SizedBox(height: 5),
