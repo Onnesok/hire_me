@@ -68,9 +68,9 @@ class ProfilePage extends StatelessWidget {
                         child: CircleAvatar(
                           radius: 60,
                           backgroundColor: Theme.of(context).colorScheme.surface,
-                          child: const CircleAvatar(
+                          child: CircleAvatar(
                             radius: 57,
-                            backgroundImage: AssetImage('assets/avatar.png'),
+                            backgroundImage: NetworkImage(profileProvider.profilePicture ??  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9G6Km-mfLzmKUTF8Xd7iKzaqzJ_kHdiWl7Q&s"),
                           ),
                         ),
                       ),

@@ -55,6 +55,7 @@ class _EditProfileViewState extends State<EditProfileView> {
   }
 
   Future<void> _updateUserData() async {
+    final profileProvider = Provider.of<ProfileProvider>(context, listen: false);
     if (_user == null) return;
 
     final updatedUser = UserModel(
@@ -66,7 +67,7 @@ class _EditProfileViewState extends State<EditProfileView> {
       profilePicture: _user!.profilePicture,
     );
 
-    final success = await _controller.updateUserData(updatedUser);
+    final success = await _controller.updateUserData(updatedUser, profileProvider);
     if (success) {
       Navigator.pop(context);
     }
@@ -119,6 +120,11 @@ class _EditProfileViewState extends State<EditProfileView> {
                 const SizedBox(height: 30),
             
                 CircleAvatar(radius: 50, backgroundImage: NetworkImage(_user!.profilePicture)),
+
+                SizedBox(height: 10,),
+
+                Text("Name: ${_user?.username}", style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 16, letterSpacing: 1, fontStyle: FontStyle.italic),),
+                SizedBox(height: 15,),
             
                 Divider(),
             
@@ -126,7 +132,7 @@ class _EditProfileViewState extends State<EditProfileView> {
             
                 Divider(),
             
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
             
                 CustomInputField(
                   controller: _nameController,
