@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hire_me/service_booking_page2.dart';
+import 'package:hire_me/view/service_booking_page2_view.dart';
 import 'package:intl/intl.dart';
 import '../controller/service_booking_page1_controller.dart';
 import '../model/servicce_booking_page1_model.dart';

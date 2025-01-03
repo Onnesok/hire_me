@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hire_me/view/service_booking_page2_view.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:hire_me/api/api_root.dart';
-import 'package:hire_me/service_booking_page2.dart';
 
 class SearchPage extends StatefulWidget {
   @override
