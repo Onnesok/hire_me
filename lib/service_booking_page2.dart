@@ -135,13 +135,14 @@ class _ServiceBookingDetailsState extends State<ServiceBookingDetails> {
               'Description',
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
+                color: Colors.black87,
               ),
             ),
             const SizedBox(height: 10),
             TextField(
               controller: _descriptionController,
               maxLines: 4,
-              style: theme.textTheme.bodyMedium,
+              style: TextStyle(color: Colors.black87),
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -166,6 +167,7 @@ class _ServiceBookingDetailsState extends State<ServiceBookingDetails> {
   }
 
   Widget _buildInfoRow(String label, String value, TextTheme textTheme) {
+    // TODO: Doing bare necessity.. will update later
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -173,13 +175,13 @@ class _ServiceBookingDetailsState extends State<ServiceBookingDetails> {
           label,
           style: textTheme.titleSmall?.copyWith(
             fontWeight: FontWeight.bold,
-            color: Colors.black54,
+            color: Colors.blueAccent,
           ),
         ),
         Text(
           value,
           style: textTheme.bodyMedium?.copyWith(
-            color: Colors.black87,
+            color: Colors.green,
           ),
         ),
       ],
