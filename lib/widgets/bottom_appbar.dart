@@ -3,7 +3,8 @@ import 'package:dot_curved_bottom_nav/dot_curved_bottom_nav.dart';
 import 'package:hire_me/cart_page.dart';
 import 'package:hire_me/help_page.dart';
 import 'package:hire_me/home.dart';
-import 'package:hire_me/profile_page.dart';
+
+import '../view/profile_page_view.dart';
 
 class CustomBottomAppBar extends StatefulWidget {
   const CustomBottomAppBar({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
     Home(controller: _scrollController),
     CartPage(scrollController: _scrollController),
     HelpScreen(scrollController: _scrollController,),
-    ProfilePage(scrollController: _scrollController, updatePageIndex: _updatePageIndex,),
+    ProfilePage(scrollController: _scrollController, updatePageIndex: _updatePageIndex),
   ];
 
   @override
