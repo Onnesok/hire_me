@@ -25,56 +25,88 @@
 ## File structure
 
 ```tree
-lib/
-├── cart_page.dart 
-├── help_page.dart
-├── home.dart
-├── main.dart
-├── profile_page.dart
-├── search_page.dart
-│
-├── api/
-│   └── api_root.dart
-│
-├── controller/
-│   ├── banner_controller.dart
-│   ├── login_controller.dart
-│   ├── map_page_controller.dart
-│   ├── notification_page_controller.dart
-│   └── registration_controller.dart
-│
-├── model/
-│   ├── banner_model.dart
-│   ├── login_model.dart
-│   ├── map_page_model.dart
-│   ├── notification_page_model.dart
-│   └── registration_model.dart
-│
-├── service/
-│   ├── local_notification.dart
-│   ├── login_api_service.dart
-│   ├── profile_provider.dart
-│   └── themeprovider.dart
-│
-├── theme/
-│   └── app_theme.dart
-│
-├── view/
-│   ├── banner_list_view.dart
-│   ├── login_view.dart
-│   ├── map_page_view.dart
-│   ├── notification_page_view.dart
-│   └── registration_view.dart
-│
-└── widgets/
-    ├── appbar_home_widget.dart
-    ├── bottom_appbar.dart
-    ├── custom_input_field.dart
-    └── home_ItemGridView_widget.dart
+
+Onnesok-hire_me/
+├── README.md
+├── .env
+├── assets/
+│   ├── Icon/
+│   ├── banner/
+│   ├── mockups/
+│   └── ui/
+├── lib/
+│   ├── AdminControlPage.dart
+│   ├── admin_page.dart
+│   ├── cart_page.dart
+│   ├── customer_page.dart
+│   ├── employee_page.dart
+│   ├── help_page.dart
+│   ├── home.dart
+│   ├── main.dart
+│   ├── search_page.dart
+│   ├── api/
+│   │   └── api_root.dart
+│   ├── controller/
+│   │   ├── Edit_profile_controller.dart
+│   │   ├── banner_controller.dart
+│   │   ├── change_password_controller.dart
+│   │   ├── login_controller.dart
+│   │   ├── map_page_controller.dart
+│   │   ├── notification_page_controller.dart
+│   │   ├── profile_page_controller.dart
+│   │   ├── registration_controller.dart
+│   │   ├── service_booking_page1_controller.dart
+│   │   └── service_booking_page2_controller.dart
+│   ├── model/
+│   │   ├── Edit_profile_model.dart
+│   │   ├── banner_model.dart
+│   │   ├── change_password_model.dart
+│   │   ├── login_model.dart
+│   │   ├── map_page_model.dart
+│   │   ├── notification_page_model.dart
+│   │   ├── profile_page_model.dart
+│   │   ├── registration_model.dart
+│   │   ├── servicce_booking_page1_model.dart
+│   │   └── service_booking_page2_model.dart
+│   ├── service/
+│   │   ├── local_notification.dart
+│   │   ├── login_api_service.dart
+│   │   ├── permissions_page.dart
+│   │   ├── profile_provider.dart
+│   │   └── themeprovider.dart
+│   ├── theme/
+│   │   └── app_theme.dart
+│   ├── view/
+│   │   ├── Edit_profile_view.dart
+│   │   ├── banner_list_view.dart
+│   │   ├── change_password_view.dart
+│   │   ├── login_view.dart
+│   │   ├── map_page_view.dart
+│   │   ├── notification_page_view.dart
+│   │   ├── profile_page_view.dart
+│   │   ├── registration_view.dart
+│   │   ├── service_booking_page1_view.dart
+│   │   └── service_booking_page2_view.dart
+│   └── widgets/
+│       ├── appbar_home_widget.dart
+│       ├── bottom_appbar.dart
+│       ├── custom_bottom_sheet.dart
+│       ├── custom_input_field.dart
+│       ├── home_ItemGridView_widget.dart
+│       └── theme_selector.dart
 
 ```
 
 For updated file structure use ``gitingest``
+
+## Follow me ?
+
+<div align="center">
+  <a href="https://github.com/Onnesok">
+    <img src="https://img.shields.io/github/followers/Onnesok?label=Follow&style=social" alt="Follow">
+  </a>
+</div>
+
 
 ## 🚀 **How to Get Started**
 **Clone the Repository**
@@ -82,3 +114,9 @@ For updated file structure use ``gitingest``
    git clone https://github.com/your-repo/hireme.git
    cd hireme
    ```
+Install dependencies and run :
+```bash
+flutter pub get
+flutter run
+```
+
